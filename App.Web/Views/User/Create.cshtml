@@ -1,0 +1,103 @@
+﻿@model App.Web.Lib.ViewModels.UserVm.Create
+@{
+    ViewBag.Title = "Create User";
+}
+<div class="page-container">
+    <div class="container-fluid">
+        <div class="body-content">
+            @Html.Partial("_Alert")
+            <div class="well well-sm clearfix">
+                <p class="pull-left page-title">@ViewBag.Title</p>
+                <p class="pull-right page-info">@*empty*@</p>
+            </div>
+            @*--------------------------------------------------*@
+            @*begin: main content*@
+            @*--------------------------------------------------*@
+            <div class="main-content-container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-10 col-md-6 col-lg-6 col-centered">
+                        @using (Html.BeginForm("Create", "User", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <span class="fa-stack">
+                                        <i class="fa fa-fw fa-plus "></i>
+                                    </span>
+                                    Create User
+                                </div>
+                                <div class="panel-body">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.UserName)
+                                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.UserName, string.Empty, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.UserFirstName)
+                                            @Html.TextBoxFor(m => m.UserFirstName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.UserFirstName, string.Empty, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.UserLastName)
+                                            @Html.TextBoxFor(m => m.UserLastName, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.UserLastName, string.Empty, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.UserAlias)
+                                            @Html.TextBoxFor(m => m.UserAlias, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.UserAlias, string.Empty, new { @class = "text-danger" })
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.UserEmailAddress)
+                                            @Html.TextBoxFor(m => m.UserEmailAddress, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.UserEmailAddress, string.Empty, new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            @Html.Label("Settings")
+                                            <div class="alert alert-info">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        @Html.CheckBoxFor(m => m.UserLoginEnabled)
+                                                        @Html.LabelFor(m => m.UserLoginEnabled)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.Label("Roles")
+                                            <div class="alert alert-info">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        @Html.EditorFor(x => x.Roles)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer clearfix">
+                                    <div class="form-group">
+                                        <div class="pull-right">
+                                            <a href="@Url.Action("Index", "User")" class="btn btn btn-primary"><span class="fa fa-fw fa-chevron-left"></span><span> Cancel</span></a>
+                                            <button type="submit" class="btn btn-success"><span class="fa fa-fw fa-save"></span> Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*--------------------------------------------------*@
+        @*end: main content*@
+        @*--------------------------------------------------*@
+    </div>
+</div>
+@section scripts
+{
+
+}
