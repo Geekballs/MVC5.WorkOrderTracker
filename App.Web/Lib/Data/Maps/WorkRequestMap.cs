@@ -19,22 +19,22 @@ namespace App.Web.Lib.Data.Maps
             #endregion
 
             #region Keys
-              
-            HasKey(k => k.WorkRequestId);
+
+            HasKey(k => new { k.WorkRequestId });
 
             #endregion
 
             #region Relationships
 
-            HasOptional(wi => wi.WorkItem).WithRequired(wr => wr.WorkRequest).WillCascadeOnDelete(true);
+            HasOptional(r => r.WorkItem).WithRequired(r => r.WorkRequest).WillCascadeOnDelete(true);
 
             #endregion
 
             #region Properties
               
-            Property(wr => wr.WorkRequestId).IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity).HasColumnAnnotation("Index", new IndexAnnotation(new[] { new IndexAttribute("IX_WorkRequestId", 1) { IsUnique = true } })).HasColumnName("WorkRequestId").HasColumnOrder(1);
-            Property(wr => wr.Title).IsRequired().HasMaxLength(200).HasColumnName("Title").HasColumnOrder(2);
-            Property(wr => wr.Description).IsRequired().HasMaxLength(2000).HasColumnName("Description").HasColumnOrder(3);
+            Property(p => p.WorkRequestId).IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity).HasColumnAnnotation("Index", new IndexAnnotation(new[] { new IndexAttribute("IX_WorkRequestId", 1) { IsUnique = true } })).HasColumnName("WorkRequestId").HasColumnOrder(1);
+            Property(p => p.Title).IsRequired().HasMaxLength(200).HasColumnName("Title").HasColumnOrder(2);
+            Property(p => p.Description).IsRequired().HasMaxLength(2000).HasColumnName("Description").HasColumnOrder(3);
 
             #endregion
         }
