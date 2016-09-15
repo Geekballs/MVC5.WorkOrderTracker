@@ -22,10 +22,10 @@ namespace App.Web.Lib.Data.Entities
         #region Navigation Properties
 
         public virtual WorkRequest WorkRequest { get; set; }
-        public virtual StrategicFitIndicator TShirtSizeEffort { get; set; }
-        public virtual StrategicFitIndicator CostToServe { get; set; }
-        public virtual StrategicFitIndicator Regulatory { get; set; }
-        public virtual StrategicFitIndicator ServiceQuality { get; set; }
+        public virtual StrategicIndicator TShirtSizeEffort { get; set; }
+        public virtual StrategicIndicator CostToServe { get; set; }
+        public virtual StrategicIndicator Regulatory { get; set; }
+        public virtual StrategicIndicator ServiceQuality { get; set; }
 
         #endregion
     }

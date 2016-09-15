@@ -6,12 +6,12 @@ namespace App.Web.Lib.Data.Entities
     /// <summary>
     /// Entity properties.
     /// </summary>
-    public class StrategicFitIndicator
+    public class StrategicIndicator
     {
         #region Properties
 
-        public Guid StrategicFitIndicatorId { get; set; }
-        public Guid StrategicFitIndicatorCategoryId { get; set; }
+        public Guid StrategicIndicatorId { get; set; }
+        public Guid StrategicIndicatorCategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
@@ -19,7 +19,7 @@ namespace App.Web.Lib.Data.Entities
 
         #region Navigation Properties
 
-        public virtual StrategicFitIndicatorCategory StrategicFitIndicatorCategory { get; set; }
+        public virtual StrategicIndicatorCategory StrategicIndicatorCategory { get; set; }
 
         public virtual ICollection<WorkItem> TShirtSizeEfforts { get; set; }
         public virtual ICollection<WorkItem> CostsToServe { get; set; }

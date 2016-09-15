@@ -47,8 +47,8 @@ namespace App.Web.Lib.Data.Contexts
         public IDbSet<SytemUserRole> UserRoles { get; set; }
         public IDbSet<WorkRequest> WorkRequests { get; set; }
         public IDbSet<WorkItem> WorkItems { get; set; }
-        public IDbSet<StrategicFitIndicator> StrategicFitIndicators { get; set; }
-        public IDbSet<StrategicFitIndicatorCategory> StrategicFitIndicatorCategories { get; set; }
+        public IDbSet<StrategicIndicator> StrategicFitIndicators { get; set; }
+        public IDbSet<StrategicIndicatorCategory> StrategicFitIndicatorCategories { get; set; }
 
         #endregion
     }

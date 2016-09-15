@@ -23,12 +23,12 @@ namespace App.Web.Migrations
         public static void StrategicFitIndicatorCategories(AppDbContext ctx)
         {
             ctx.StrategicFitIndicatorCategories.AddOrUpdate(p => p.Name,
-                new StrategicFitIndicatorCategory { Name = "T-Shirt Size Effort", Description = "Need a description..."},
-                new StrategicFitIndicatorCategory { Name = "Regulatory", Description = "Need a description...", },
-                new StrategicFitIndicatorCategory { Name = "Service Quality", Description = "Need a description...", },
-                new StrategicFitIndicatorCategory { Name = "Business Growth", Description = "Need a description...", },
-                new StrategicFitIndicatorCategory { Name = "Cost To Serve", Description = "Need a description...", },
-                new StrategicFitIndicatorCategory { Name = "Staff", Description = "Need a description...", }
+                new StrategicIndicatorCategory { Name = "T-Shirt Size Effort", Description = "Need a description..."},
+                new StrategicIndicatorCategory { Name = "Regulatory", Description = "Need a description...", },
+                new StrategicIndicatorCategory { Name = "Service Quality", Description = "Need a description...", },
+                new StrategicIndicatorCategory { Name = "Business Growth", Description = "Need a description...", },
+                new StrategicIndicatorCategory { Name = "Cost To Serve", Description = "Need a description...", },
+                new StrategicIndicatorCategory { Name = "Staff", Description = "Need a description...", }
             );
 
             ctx.SaveChanges();

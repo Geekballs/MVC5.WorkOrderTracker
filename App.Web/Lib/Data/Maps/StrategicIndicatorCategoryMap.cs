@@ -8,31 +8,31 @@ namespace App.Web.Lib.Data.Maps
     /// <summary>
     /// Entity mapping properties.
     /// </summary>
-    public class StrategicFitIndicatorCategoryMap : EntityTypeConfiguration<StrategicFitIndicatorCategory>
+    public class StrategicIndicatorCategoryMap : EntityTypeConfiguration<StrategicIndicatorCategory>
     {
-        public StrategicFitIndicatorCategoryMap()
+        public StrategicIndicatorCategoryMap()
         {
             #region Table 
 
-            ToTable(tableName: "StrategicFitIndicatorCategory", schemaName: "Metric");
+            ToTable(tableName: "StrategicIndicatorCategory", schemaName: "Metric");
 
             #endregion
 
             #region Keys
               
-            HasKey(k => k.StrategicFitIndicatorCategoryId);
+            HasKey(k => k.StrategicIndicatorCategoryId);
 
             #endregion
 
             #region Relationships
 
-            HasMany(r => r.StrategicFitIndicators).WithRequired(r => r.StrategicFitIndicatorCategory).WillCascadeOnDelete(false);
+            HasMany(r => r.StrategicIndicators).WithRequired(r => r.StrategicIndicatorCategory).WillCascadeOnDelete(false);
 
             #endregion
 
             #region Properties
 
-            Property(p => p.StrategicFitIndicatorCategoryId).IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity).HasColumnAnnotation("Index", new IndexAnnotation(new[] { new IndexAttribute("IX_Id", 1) { IsUnique = true } })).HasColumnName("StrategicFitIndicatorCategoryId").HasColumnOrder(1);
+            Property(p => p.StrategicIndicatorCategoryId).IsRequired().HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity).HasColumnAnnotation("Index", new IndexAnnotation(new[] { new IndexAttribute("IX_Id", 1) { IsUnique = true } })).HasColumnName("StrategicIndicatorCategoryId").HasColumnOrder(1);
             Property(p => p.Name).IsRequired().HasMaxLength(200).HasColumnAnnotation("Index", new IndexAnnotation(new[] { new IndexAttribute("IX_Name", 2) { IsUnique = true } })).HasColumnName("Name").HasColumnOrder(2);
             Property(p => p.Description).IsRequired().HasMaxLength(450).HasColumnName("Description").HasColumnOrder(3);
 

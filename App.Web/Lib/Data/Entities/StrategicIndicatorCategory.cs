@@ -6,11 +6,11 @@ namespace App.Web.Lib.Data.Entities
     /// <summary>
     /// Entity properties.
     /// </summary>
-    public class StrategicFitIndicatorCategory
+    public class StrategicIndicatorCategory
     {
         #region Properties
 
-        public Guid StrategicFitIndicatorCategoryId { get; set; }
+        public Guid StrategicIndicatorCategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
@@ -18,7 +18,7 @@ namespace App.Web.Lib.Data.Entities
 
         #region Navigation Properties
 
-        public virtual ICollection<StrategicFitIndicator> StrategicFitIndicators { get; set; }
+        public virtual ICollection<StrategicIndicator> StrategicIndicators { get; set; }
 
         #endregion
     }
