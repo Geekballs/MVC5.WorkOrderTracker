@@ -3,6 +3,9 @@ using System.Web.Mvc;
 
 namespace App.Web.Lib.ViewModels
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class AuthVm
     {
         public class SignIn

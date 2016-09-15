@@ -1,4 +1,4 @@
-﻿@model App.Web.Lib.ViewModels.RoleVm.Detail
+﻿@model App.Web.Lib.ViewModels.SystemRoleVm.Detail
 @{
     ViewBag.Title = "Role Detail";
 }
@@ -26,9 +26,9 @@
                             <div class="panel-body">
                                 <div class="col-md-6">
                                     <div>
-                                        @Html.LabelFor(m => m.RoleId)
+                                        @Html.LabelFor(m => m.SystemRoleId)
                                         <div class="alert alert-info text-uppercase">
-                                            <p>@Model.RoleId</p>
+                                            <p>@Model.SystemRoleId</p>
                                         </div>
                                     </div>
                                     <div>
@@ -57,7 +57,7 @@
                                             {
                                                 foreach (var i in Model.RoleUsersDetail)
                                                 {
-                                                    <a href="@Url.Action("Detail", "User", new {id = @i.UserId})" class="list-group-item"><span class="fa fa-fw fa-caret-right"></span><span> @i.UserName</span></a>
+                                                    <a href="@Url.Action("Detail", "User", new {id = @i.SystemUserId})" class="list-group-item"><span class="fa fa-fw fa-caret-right"></span><span> @i.UserName</span></a>
                                                 }
                                             }
                                         </div>
@@ -68,8 +68,8 @@
                                 <div class="form-group">
                                     <div class="pull-right">
                                         <a href="@Url.Action("Index", "Role")" class="btn btn btn-primary"><span class="fa fa-fw fa-chevron-left"></span><span> Cancel</span></a>
-                                        <a href="@Url.Action("Edit", "Role", new { id = @Model.RoleId })" class="btn btn btn-primary"><span class="fa fa-fw fa-pencil"></span><span> Edit</span></a>
-                                        <a href="@Url.Action("Delete", "Role", new {id = @Model.RoleId})" class="btn btn btn-danger"><span class="fa fa-fw fa-trash"></span><span> Delete</span></a>
+                                        <a href="@Url.Action("Edit", "Role", new { id = @Model.SystemRoleId })" class="btn btn btn-primary"><span class="fa fa-fw fa-pencil"></span><span> Edit</span></a>
+                                        <a href="@Url.Action("Delete", "Role", new {id = @Model.SystemRoleId})" class="btn btn btn-danger"><span class="fa fa-fw fa-trash"></span><span> Delete</span></a>
                                     </div>
                                 </div>
                             </div>

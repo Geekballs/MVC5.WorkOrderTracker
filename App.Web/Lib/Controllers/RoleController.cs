@@ -13,11 +13,11 @@ namespace App.Web.Lib.Controllers
     [Trust(Privilege = "Admin")]
     public class RoleController : BaseController
     {
-        private readonly IRoleService _roleService;
+        private readonly ISystemRoleService _systemRoleService;
 
-        public RoleController(IRoleService roleService)
+        public RoleController(ISystemRoleService systemRoleService)
         {
-            _roleService = roleService;
+            _systemRoleService = systemRoleService;
         }
 
         #region Index
@@ -25,12 +25,12 @@ namespace App.Web.Lib.Controllers
         [Route("Roles"), HttpGet]
         public ActionResult Index(string term, int? page)
         {
-            var model = _roleService.GetAllRoles().Select(r => new RoleVm.Index()
+            var model = _systemRoleService.GetAllRoles().Select(r => new SystemRoleVm.Index()
             {
-                RoleId = r.RoleId,
+                SystemRoleId = r.SystemRoleId,
                 RoleName = r.Name,
                 RoleDescription = r.Description,
-                RoleUserCount = r.UserRoles.Count
+                SystemRoleUserCount = r.SystemUserRoles.Count
             });
             if (!string.IsNullOrEmpty(term))
             {
@@ -49,23 +49,23 @@ namespace App.Web.Lib.Controllers
         [Route("Role-Detail/{id}"), HttpGet]
         public ActionResult Detail(Guid id)
         {
-            var role = _roleService.GetById(id);
+            var role = _systemRoleService.GetRoleById(id);
             if (role == null)
             {
                 GetAlert(Danger, "Role cannot be found!");
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
-            var model = new RoleVm.Detail()
+            var model = new SystemRoleVm.Detail()
             {
-                RoleId = role.RoleId,
+                SystemRoleId = role.SystemRoleId,
                 RoleName = role.Name,
                 RoleDescription = role.Description
             };
-            var roleUsers = _roleService.GetUsersInRole(id);
-            var userDetail = roleUsers.Select(ru => new RoleVm.RoleUsersDetail()
+            var roleUsers = _systemRoleService.GetUsersInRole(id);
+            var userDetail = roleUsers.Select(ru => new SystemRoleVm.RoleUsersDetail()
             {
-                UserId = ru.UserId,
-                UserName = ru.User.UserName
+                SystemUserId = ru.SystemUserId,
+                UserName = ru.SystemUser.UserName
             }).ToList();
             model.RoleUsersDetail = userDetail;
             return View("Detail", model);
@@ -78,16 +78,16 @@ namespace App.Web.Lib.Controllers
         [Route("Create-Role"), HttpGet]
         public ActionResult Create()
         {
-            var model = new RoleVm.Create();
+            var model = new SystemRoleVm.Create();
             return View("Create", model);
         }
 
         [Route("Create-Role"), HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Create(RoleVm.Create model)
+        public ActionResult Create(SystemRoleVm.Create model)
         {
             if (ModelState.IsValid)
             {
-                _roleService.CreateRole(model.RoleName, model.RoleDescription);
+                _systemRoleService.CreateRole(model.RoleName, model.RoleDescription);
                 GetAlert(Success, "Role created!");
                 return RedirectToAction("Index");
             }
@@ -102,15 +102,15 @@ namespace App.Web.Lib.Controllers
         [Route("Edit-Role/{id}"), HttpGet]
         public ActionResult Edit(Guid id)
         {
-            var role = _roleService.GetById(id);
+            var role = _systemRoleService.GetRoleById(id);
             if (role == null)
             {
                 GetAlert(Danger, "Role cannot be found!");
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
-            var model = new RoleVm.Edit()
+            var model = new SystemRoleVm.Edit()
             {
-                RoleId = role.RoleId,
+                SystemRoleId = role.SystemRoleId,
                 RoleName = role.Name,
                 RoleDescription = role.Description
             };
@@ -118,11 +118,11 @@ namespace App.Web.Lib.Controllers
         }
 
         [Route("Edit-Role/{id}"), HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Edit(RoleVm.Edit model)
+        public ActionResult Edit(SystemRoleVm.Edit model)
         {
             if (ModelState.IsValid)
             {
-                _roleService.EditRole(model.RoleId, model.RoleName, model.RoleDescription);
+                _systemRoleService.EditRole(model.SystemRoleId, model.RoleName, model.RoleDescription);
                 GetAlert(Success, "Role updated!");
                 return RedirectToAction("Index");
             }
@@ -137,15 +137,15 @@ namespace App.Web.Lib.Controllers
         [Route("Delete-Role/{id}"), HttpGet]
         public ActionResult Delete(Guid id)
         {
-            var role = _roleService.GetById(id);
+            var role = _systemRoleService.GetRoleById(id);
             if (role == null)
             {
                 GetAlert(Danger, "Role cannot be found!");
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
-            var model = new RoleVm.Delete()
+            var model = new SystemRoleVm.Delete()
             {
-                RoleId = role.RoleId,
+                SystemRoleId = role.SystemRoleId,
                 RoleName = role.Name,
                 RoleDescription = role.Description
             };
@@ -153,11 +153,11 @@ namespace App.Web.Lib.Controllers
         }
 
         [Route("Delete-Role/{id}"), HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Delete(RoleVm.Delete model)
+        public ActionResult Delete(SystemRoleVm.Delete model)
         {
             if (ModelState.IsValid)
             {
-                _roleService.DeleteRole(model.RoleId);
+                _systemRoleService.DeleteRole(model.SystemRoleId);
                 GetAlert(Success, "Role deleted!");
                 return RedirectToAction("Index");
             }

@@ -3,16 +3,19 @@ using System.Collections.Generic;
 
 namespace App.Web.Lib.Data.Entities
 {
-    public class User : BaseEntity
+    /// <summary>
+    /// Entity properties.
+    /// </summary>
+    public class SystemUser : BaseEntity
     {
-        public User()
+        public SystemUser()
         {
-            UserRoles = new HashSet<UserRole>();
+            SystemUserRoles = new HashSet<SytemUserRole>();
         }
 
         #region Properties
 
-        public Guid UserId { get; set; }
+        public Guid SystemUserId { get; set; }
         public string UserName { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -24,7 +27,7 @@ namespace App.Web.Lib.Data.Entities
 
         #region Navigation Properties
 
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<SytemUserRole> SystemUserRoles { get; set; }
 
         #endregion
     }

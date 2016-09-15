@@ -1,6 +1,6 @@
 ﻿@model App.Web.Lib.ViewModels.UserVm.Delete
 @{
-    ViewBag.Title = "Delete User";
+    ViewBag.Title = "Delete System User";
 }
 <div class="page-container">
     <div class="container-fluid">
@@ -16,7 +16,7 @@
             <div class="main-content-container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-10 col-md-6 col-lg-4 col-centered">
-                        @using (Html.BeginForm("Delete", "User", FormMethod.Post))
+                        @using (Html.BeginForm("Delete", "SystemUser", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
                             @Html.HiddenFor(model => model.UserId)
@@ -30,9 +30,9 @@
                                 <div class="panel-footer clearfix">
                                     <div class="form-group">
                                         <div class="pull-right">
-                                            <a href="@Url.Action("Index", "User")" class="btn btn btn-primary"><span class="fa fa-fw fa-chevron-left"></span><span> Cancel</span></a>
-                                            <a href="@Url.Action("Detail", "User", new { id = @Model.UserId })" class="btn btn btn-primary"><span class="fa fa-fw fa-info"></span><span> Detail</span></a>
-                                            <a href="@Url.Action("Edit", "User", new { id = @Model.UserId })" class="btn btn btn-primary"><span class="fa fa-fw fa-pencil"></span><span> Edit</span></a>
+                                            <a href="@Url.Action("Index", "SystemUser")" class="btn btn btn-primary"><span class="fa fa-fw fa-chevron-left"></span><span> Cancel</span></a>
+                                            <a href="@Url.Action("Detail", "SystemUser", new { id = @Model.UserId })" class="btn btn btn-primary"><span class="fa fa-fw fa-info"></span><span> Detail</span></a>
+                                            <a href="@Url.Action("Edit", "SystemUser", new { id = @Model.UserId })" class="btn btn btn-primary"><span class="fa fa-fw fa-pencil"></span><span> Edit</span></a>
                                             <button type="submit" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> Delete</button>
                                         </div>
                                     </div>

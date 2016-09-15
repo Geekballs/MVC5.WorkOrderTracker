@@ -18,8 +18,8 @@ namespace App.Web
         private static IUnityContainer BuildUnityContainer()
         {
             var container = new UnityContainer();
-            container.RegisterType<IRoleService, RoleService>();
-            container.RegisterType<IUserService, UserService>();
+            container.RegisterType<ISystemRoleService, SystemRoleService>();
+            container.RegisterType<ISystemUserService, SystemUserService>();
             RegisterTypes(container);
             return container;
         }

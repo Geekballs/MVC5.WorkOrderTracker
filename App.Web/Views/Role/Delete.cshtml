@@ -1,4 +1,4 @@
-﻿@model App.Web.Lib.ViewModels.RoleVm.Delete
+﻿@model App.Web.Lib.ViewModels.SystemRoleVm.Delete
 @{
     ViewBag.Title = "Delete Role";
 }
@@ -19,7 +19,7 @@
                         @using (Html.BeginForm("Delete", "Role", FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
-                            @Html.HiddenFor(model => model.RoleId)
+                            @Html.HiddenFor(model => model.SystemRoleId)
                             <div class="panel panel-danger">
                                 <div class="panel-heading"><span class="fa-stack"><i class="fa fa-fw fa-trash "></i></span>Delete Role</div>
                                 <div class="panel-body">
@@ -31,8 +31,8 @@
                                     <div class="form-group">
                                         <div class="pull-right">
                                             <a href="@Url.Action("Index", "Role")" class="btn btn btn-primary"><span class="fa fa-fw fa-chevron-left"></span><span> Cancel</span></a>
-                                            <a href="@Url.Action("Detail", "Role", new { id = @Model.RoleId })" class="btn btn btn-primary"><span class="fa fa-fw fa-info"></span><span> Detail</span></a>
-                                            <a href="@Url.Action("Edit", "Role", new { id = @Model.RoleId })" class="btn btn btn-primary"><span class="fa fa-fw fa-pencil"></span><span> Edit</span></a>
+                                            <a href="@Url.Action("Detail", "Role", new { id = @Model.SystemRoleId })" class="btn btn btn-primary"><span class="fa fa-fw fa-info"></span><span> Detail</span></a>
+                                            <a href="@Url.Action("Edit", "Role", new { id = @Model.SystemRoleId })" class="btn btn btn-primary"><span class="fa fa-fw fa-pencil"></span><span> Edit</span></a>
                                             <button type="submit" class="btn btn-danger"><span class="fa fa-fw fa-trash"></span> Delete</button>
                                         </div>
                                     </div>

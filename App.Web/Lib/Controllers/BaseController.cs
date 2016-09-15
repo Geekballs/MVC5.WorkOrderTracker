@@ -1,9 +1,14 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using App.Web.Lib.Data.Contexts;
+using App.Web.Lib.Data.Services;
 
 namespace App.Web.Lib.Controllers
 {
     public class BaseController : Controller
     {
+
         #region Alert Helpers
 
         protected const string Danger = (@"danger");
@@ -30,6 +35,12 @@ namespace App.Web.Lib.Controllers
             }
             return RedirectToAction("Index", "App");
         }
+
+        #endregion
+
+        #region List Helpers
+
+        
 
         #endregion
     }

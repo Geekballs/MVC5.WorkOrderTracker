@@ -1,6 +1,6 @@
-﻿@model IEnumerable<App.Web.Lib.ViewModels.RoleVm.Index>
+﻿@model IEnumerable<App.Web.Lib.ViewModels.SystemRoleVm.Index>
 @{
-    ViewBag.Title = "Application Roles";
+    ViewBag.Title = "System Roles";
 }
 <div class="page-container">
     <div class="container-fluid">
@@ -64,22 +64,22 @@
                                         @foreach (var i in Model)
                                         {
                                             <tr>
-                                                <td class="vert-align text-uppercase">@i.RoleId</td>
+                                                <td class="vert-align text-uppercase">@i.SystemRoleId</td>
                                                 <td class="vert-align">@i.RoleName</td>
                                                 <td class="vert-align text-center">
-                                                    @if (i.RoleUserCount > 0)
+                                                    @if (i.SystemRoleUserCount > 0)
                                                     {
-                                                        <span class="label label-success">@i.RoleUserCount</span>
+                                                        <span class="label label-success">@i.SystemRoleUserCount</span>
                                                     }
                                                     else
                                                     {
-                                                        <span class="label label-danger">@i.RoleUserCount</span>
+                                                        <span class="label label-danger">@i.SystemRoleUserCount</span>
                                                     }
                                                 </td>
                                                 <td class="vert-align">
-                                                    <a href="@Url.Action("Detail", "Role", new {id = i.RoleId})" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Detail"><span class="fa fa-fw fa-info"></span><span class="hidden-xs hidden-sm hidden-md hidden-lg"> Detail</span></a>
-                                                    <a href="@Url.Action("Edit", "Role", new {id = i.RoleId})" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="fa fa-fw fa-pencil"></span><span class="hidden-xs hidden-sm hidden-md hidden-lg"> Edit</span></a>
-                                                    <a href="@Url.Action("Delete", "Role", new {id = i.RoleId})" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><span class="fa fa-fw fa-trash"></span><span class="hidden-xs hidden-sm hidden-md hidden-lg"> Delete</span></a>
+                                                    <a href="@Url.Action("Detail", "Role", new {id = i.SystemRoleId})" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Detail"><span class="fa fa-fw fa-info"></span><span class="hidden-xs hidden-sm hidden-md hidden-lg"> Detail</span></a>
+                                                    <a href="@Url.Action("Edit", "Role", new {id = i.SystemRoleId})" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="fa fa-fw fa-pencil"></span><span class="hidden-xs hidden-sm hidden-md hidden-lg"> Edit</span></a>
+                                                    <a href="@Url.Action("Delete", "Role", new {id = i.SystemRoleId})" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><span class="fa fa-fw fa-trash"></span><span class="hidden-xs hidden-sm hidden-md hidden-lg"> Delete</span></a>
                                                 </td>
                                             </tr>
                                         }

@@ -1,0 +1,6 @@
+﻿@model App.Web.Lib.Models.RadioButtonListItem
+
+    @Html.HiddenFor(x => x.Id)
+    @Html.RadioButtonFor(x => x.Value, Model.Id)
+
+<br />

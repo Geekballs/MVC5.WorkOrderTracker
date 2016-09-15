@@ -4,12 +4,14 @@ using App.Web.Lib.Data.Entities;
 
 namespace App.Web.Lib.Data.Services
 {
-    public interface IUserService
+    /// <summary>
+    /// SystemUserService members.
+    /// </summary>
+    public interface ISystemUserService
     {
-        IEnumerable<User> GetAllUsers();
-        User GetById(Guid userId);
-        User GetByName(string name);
-        IEnumerable<UserRole> GetRolesForUser(Guid userId);
+        IEnumerable<SystemUser> GetAllUsers();
+        SystemUser GetUserById(Guid userId);
+        IEnumerable<SytemUserRole> GetRolesForUser(Guid userId);
         void CreateUser(string userName, string firstName, string lastName, string alias, string emailAddress, bool loginEnabled, IEnumerable<Guid> roles);
         void EditUser(Guid userId, string userName, string firstName, string lastName, string alias, string emailAddress, bool loginEnabled, IEnumerable<Guid> roles);
         void DeleteUser(Guid userId);

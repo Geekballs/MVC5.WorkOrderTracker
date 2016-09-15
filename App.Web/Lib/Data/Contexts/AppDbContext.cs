@@ -7,6 +7,9 @@ using App.Web.Lib.Data.Entities;
 
 namespace App.Web.Lib.Data.Contexts
 {
+    /// <summary>
+    /// Database configuration properties.
+    /// </summary>
     public class AppDbContext : DbContext
     {
         #region Database Connections
@@ -39,9 +42,13 @@ namespace App.Web.Lib.Data.Contexts
 
         #region Model Configuration
 
-        public IDbSet<User> Users { get; set; }
-        public IDbSet<Role> Roles { get; set; }
-        public IDbSet<UserRole> UserRoles { get; set; }
+        public IDbSet<SystemUser> Users { get; set; }
+        public IDbSet<SystemRole> Roles { get; set; }
+        public IDbSet<SytemUserRole> UserRoles { get; set; }
+        public IDbSet<WorkRequest> WorkRequests { get; set; }
+        public IDbSet<WorkItem> WorkItems { get; set; }
+        public IDbSet<StrategicFitIndicator> StrategicFitIndicators { get; set; }
+        public IDbSet<StrategicFitIndicatorCategory> StrategicFitIndicatorCategories { get; set; }
 
         #endregion
     }

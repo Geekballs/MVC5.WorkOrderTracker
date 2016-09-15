@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<App.Web.Lib.ViewModels.UserVm.Index>
 @{
-    ViewBag.Title = "Application Users";
+    ViewBag.Title = "System Users";
 }
 <div class="page-container">
     <div class="container-fluid">
@@ -24,7 +24,7 @@
                     <div class="panel-body">
                         <div class="alert alert-info clearfix">
                             <div class="row">
-                                @using (Html.BeginForm("Index", "User", FormMethod.Get))
+                                @using (Html.BeginForm("Index", "SystemUser", FormMethod.Get))
                                 {
                                     <div class="col-md-3">
                                         <div class="input-group add-on">
@@ -36,7 +36,7 @@
                                     </div>
                                 }
                                 <div class="col-md-3">
-                                    <a href="@Url.Action("Create", "User")" class="btn btn-success"><span class="fa fa-fw fa-plus"></span><span> New</span></a>
+                                    <a href="@Url.Action("Create", "SystemUser")" class="btn btn-success"><span class="fa fa-fw fa-plus"></span><span> New</span></a>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="paging-container">
@@ -92,9 +92,9 @@
                                                         }
                                                     </td>
                                                     <td class="vert-align">
-                                                        <a href="@Url.Action("Detail", "User", new {id = i.UserId})" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Detail"><span class="fa fa-fw fa-info"></span><span class="hidden-xs hidden-sm hidden-md hidden-lg"> Detail</span></a>
-                                                        <a href="@Url.Action("Edit", "User", new {id = i.UserId})" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="fa fa-fw fa-pencil"></span><span class="hidden-xs hidden-sm hidden-md hidden-lg"> Edit</span></a>
-                                                        <a href="@Url.Action("Delete", "User", new {id = i.UserId})" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><span class="fa fa-fw fa-trash"></span><span class="hidden-xs hidden-sm hidden-md hidden-lg"> Delete</span></a>
+                                                        <a href="@Url.Action("Detail", "SystemUser", new {id = i.UserId})" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Detail"><span class="fa fa-fw fa-info"></span><span class="hidden-xs hidden-sm hidden-md hidden-lg"> Detail</span></a>
+                                                        <a href="@Url.Action("Edit", "SystemUser", new {id = i.UserId})" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Edit"><span class="fa fa-fw fa-pencil"></span><span class="hidden-xs hidden-sm hidden-md hidden-lg"> Edit</span></a>
+                                                        <a href="@Url.Action("Delete", "SystemUser", new {id = i.UserId})" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Delete"><span class="fa fa-fw fa-trash"></span><span class="hidden-xs hidden-sm hidden-md hidden-lg"> Delete</span></a>
                                                     </td>
                                                 </tr>
                                             }

@@ -5,21 +5,29 @@ using System.ComponentModel.DataAnnotations;
 
 namespace App.Web.Lib.ViewModels
 {
-    public class RoleVm
+    /// <summary>
+    /// 
+    /// </summary>
+    public class SystemRoleVm
     {
+        /// <summary>
+        /// ...\App.Web\Views\Role\Index.cshtml
+        /// </summary>
         public class Index
         {
-            public Guid RoleId { get; set; }
+            public Guid SystemRoleId { get; set; }
             public string RoleName { get; set; }
             public string RoleDescription { get; set; }
-            public int RoleUserCount { get; set; }
-
+            public int SystemRoleUserCount { get; set; }
         }
 
+        /// <summary>
+        /// ...\App.Web\Views\Role\Detail.cshtml
+        /// </summary>
         public class Detail
         {
             [DisplayName("ID")]
-            public Guid RoleId { get; set; }
+            public Guid SystemRoleId { get; set; }
 
             [DisplayName("Name")]
             public string RoleName { get; set; }
@@ -31,13 +39,18 @@ namespace App.Web.Lib.ViewModels
             public List<RoleUsersDetail> RoleUsersDetail { get; set; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public class RoleUsersDetail
         {
-            public Guid UserId { get; set; }
+            public Guid SystemUserId { get; set; }
             public string UserName { get; set; }
-
         }
 
+        /// <summary>
+        /// ...\App.Web\Views\Role\Create.cshtml
+        /// </summary>
         public class Create
         {
             [DisplayName("Name")]
@@ -53,9 +66,12 @@ namespace App.Web.Lib.ViewModels
             public string RoleDescription { get; set; }
         }
 
+        /// <summary>
+        /// ...\App.Web\Views\Role\Edit.cshtml
+        /// </summary>
         public class Edit
         {
-            public Guid RoleId { get; set; }
+            public Guid SystemRoleId { get; set; }
 
             [DisplayName("Name")]
             [Required(ErrorMessage = "Required!", AllowEmptyStrings = false)]
@@ -70,9 +86,12 @@ namespace App.Web.Lib.ViewModels
             public string RoleDescription { get; set; }
         }
 
+        /// <summary>
+        /// ...\App.Web\Views\Role\Delete.cshtml
+        /// </summary>
         public class Delete
         {
-            public Guid RoleId { get; set; }
+            public Guid SystemRoleId { get; set; }
 
             [DisplayName("Name")]
             public string RoleName { get; set; }

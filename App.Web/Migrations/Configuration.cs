@@ -13,8 +13,9 @@ namespace App.Web.Migrations
 
         protected override void Seed(AppDbContext ctx)
         {
-            SeedData.DefaultRoles(ctx);
-            SeedData.TestUsers(ctx);
+            SeedData.DefaultSystemRoles(ctx);
+            SeedData.StrategicFitIndicatorCategories(ctx);
+            SeedData.TestSystemUsers(ctx);
         }
     }
 }

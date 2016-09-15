@@ -2,6 +2,9 @@
 
 namespace App.Web.Lib.ViewModels
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class BaseViewModel
     {
         public bool Enabled { get; set; }

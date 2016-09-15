@@ -14,13 +14,13 @@ namespace App.Web.Lib.Controllers
     [Trust(Privilege = "Admin")]
     public class UserController : BaseController
     {
-        private readonly IUserService _userService;
-        private readonly IRoleService _roleService;
+        private readonly ISystemUserService _sus;
+        private readonly ISystemRoleService _srs;
 
-        public UserController(IUserService userService, IRoleService roleService)
+        public UserController(ISystemUserService sus, ISystemRoleService srs)
         {
-            _userService = userService;
-            _roleService = roleService;
+            _sus = sus;
+            _srs = srs;
         }
 
         #region Index
@@ -28,16 +28,16 @@ namespace App.Web.Lib.Controllers
         [Route("Users"), HttpGet]
         public ActionResult Index(string term, int? page)
         {
-            var model = _userService.GetAllUsers().Select(u => new UserVm.Index()
+            var model = _sus.GetAllUsers().Select(u => new SystemUserVm.Index()
             {
-                UserId = u.UserId,
+                SystemUserId = u.SystemUserId,
                 UserName = u.UserName,
                 UserFirstName = u.FirstName,
                 UserLastName = u.LastName,
                 UserAlias = u.Alias,
-                EmailAddress = u.EmailAddress,
-                LoginEnabled = u.LoginEnabled,
-                UserRoleCount = u.UserRoles.Count
+                UserEmailAddress = u.EmailAddress,
+                UserLoginEnabled = u.LoginEnabled,
+                UserRoleCount = u.SystemUserRoles.Count
             });
             if (!string.IsNullOrEmpty(term))
             {
@@ -57,15 +57,15 @@ namespace App.Web.Lib.Controllers
         [Route("User-Detail/{id}"), HttpGet]
         public ActionResult Detail(Guid id)
         {
-            var user = _userService.GetById(id);
+            var user = _sus.GetUserById(id);
             if (user == null)
             {
                 GetAlert(Danger, "User cannot be found!");
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
-            var model = new UserVm.Detail()
+            var model = new SystemUserVm.Detail()
             {
-                UserId = user.UserId,
+                SystemUserId = user.SystemUserId,
                 UserName = user.UserName,
                 UserFirstName = user.FirstName,
                 UserLastName = user.LastName,
@@ -73,11 +73,11 @@ namespace App.Web.Lib.Controllers
                 UserEmailAddress = user.EmailAddress,
                 UserLoginEnabled = user.LoginEnabled
             };
-            var userRoles = _userService.GetRolesForUser(id);
-            var roleDetail = userRoles.Select(rd => new UserVm.UserRolesDetail()
+            var userRoles = _sus.GetRolesForUser(id);
+            var roleDetail = userRoles.Select(rd => new SystemUserVm.UserRolesDetail()
             {
-                RoleId = rd.RoleId,
-                RoleName = rd.Role.Name
+                SystemRoleId = rd.SystemRoleId,
+                SystemRoleName = rd.SystemRole.Name
             }).ToList();
             model.UserRolesDetail = roleDetail;
             return View("Detail", model);
@@ -90,11 +90,11 @@ namespace App.Web.Lib.Controllers
         [Route("Create-User"), HttpGet]
         public ActionResult Create()
         {
-            var model = new UserVm.Create();
-            var roles = _roleService.GetAllRoles();;
+            var model = new SystemUserVm.Create();
+            var roles = _srs.GetAllRoles();;
             var roleDetail = roles.Select(rd => new CheckBoxListItem()
             {
-                Id = rd.RoleId,
+                Id = rd.SystemRoleId,
                 Display = rd.Name,
                 IsChecked = false
             }).ToList();
@@ -103,12 +103,12 @@ namespace App.Web.Lib.Controllers
         }
 
         [Route("Create-User"), HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Create(UserVm.Create model)
+        public ActionResult Create(SystemUserVm.Create model)
         {
             if (ModelState.IsValid)
             {
                 var rolesToAdd = model.Roles.Where(r => r.IsChecked).Select(r => r.Id).ToList();
-                _userService.CreateUser(model.UserName, model.UserFirstName, model.UserLastName, model.UserAlias, model.UserEmailAddress, model.UserLoginEnabled, rolesToAdd);
+                _sus.CreateUser(model.UserName, model.UserFirstName, model.UserLastName, model.UserAlias, model.UserEmailAddress, model.UserLoginEnabled, rolesToAdd);
                 GetAlert(Success, "User created!");
                 return RedirectToAction("Index");
             }
@@ -123,15 +123,15 @@ namespace App.Web.Lib.Controllers
         [Route("Edit-User/{id}"), HttpGet]
         public ActionResult Edit(Guid id)
         {
-            var user = _userService.GetById(id);
+            var user = _sus.GetUserById(id);
             if (user == null)
             {
                 GetAlert(Danger, "User cannot be found!");
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
-            var model = new UserVm.Edit()
+            var model = new SystemUserVm.Edit()
             {
-                UserId = user.UserId,
+                SystemUserId = user.SystemUserId,
                 UserName = user.UserName,
                 UserFirstName = user.FirstName,
                 UserLastName = user.LastName,
@@ -139,25 +139,25 @@ namespace App.Web.Lib.Controllers
                 UserEmailAddress = user.EmailAddress,
                 UserLoginEnabled = user.LoginEnabled
             };
-            var userRoles = _userService.GetRolesForUser(id);
-            var roles = _roleService.GetAllRoles();
+            var userRoles = _sus.GetRolesForUser(id);
+            var roles = _srs.GetAllRoles();
             var roleDetail = roles.Select(rd => new CheckBoxListItem()
             {
-                Id = rd.RoleId,
+                Id = rd.SystemRoleId,
                 Display = rd.Name,
-                IsChecked = userRoles.Any(ur => ur.RoleId == rd.RoleId)
+                IsChecked = userRoles.Any(ur => ur.SystemRoleId == rd.SystemRoleId)
             }).ToList();
             model.Roles = roleDetail;
             return View("Edit", model);
         }
 
         [Route("Edit-User/{id}"), HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Edit(UserVm.Edit model)
+        public ActionResult Edit(SystemUserVm.Edit model)
         {
             if (ModelState.IsValid)
             {
                 var rolesToAdd = model.Roles.Where(r => r.IsChecked).Select(r => r.Id).ToList();
-                _userService.EditUser(model.UserId, model.UserName, model.UserFirstName, model.UserLastName, model.UserAlias, model.UserEmailAddress, model.UserLoginEnabled, rolesToAdd);
+                _sus.EditUser(model.SystemUserId, model.UserName, model.UserFirstName, model.UserLastName, model.UserAlias, model.UserEmailAddress, model.UserLoginEnabled, rolesToAdd);
                 GetAlert(Success, "User updated!");
                 return RedirectToAction("Index");
             }
@@ -172,31 +172,31 @@ namespace App.Web.Lib.Controllers
         [Route("Delete-User/{id}"), HttpGet]
         public ActionResult Delete(Guid id)
         {
-            var user = _userService.GetById(id);
+            var user = _sus.GetUserById(id);
             if (user == null)
             {
                 GetAlert(Danger, "User cannot be found!");
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
-            var model = new UserVm.Delete()
+            var model = new SystemUserVm.Delete()
             {
-                UserId = user.UserId,
+                SystemUserId = user.SystemUserId,
                 UserName = user.UserName,
                 UserFirstName = user.FirstName,
                 UserLastName = user.LastName,
                 UserAlias = user.Alias,
-                EmailAddress = user.EmailAddress,
+                UserEmailAddress = user.EmailAddress,
                 UserLoginEnabled = user.LoginEnabled
             };
             return View("Delete", model);
         }
 
         [Route("Delete-User/{id}"), HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Delete(UserVm.Delete model)
+        public ActionResult Delete(SystemUserVm.Delete model)
         {
             if (ModelState.IsValid)
             {
-                _userService.DeleteUser(model.UserId);
+                _sus.DeleteUser(model.SystemUserId);
                 GetAlert(Success, "User deleted!");
                 return RedirectToAction("Index");
             }

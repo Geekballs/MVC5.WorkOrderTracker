@@ -499,17 +499,25 @@
     <Compile Include="Lib\Controllers\ErrorController.cs" />
     <Compile Include="Lib\Controllers\RoleController.cs" />
     <Compile Include="Lib\Controllers\UserController.cs" />
-    <Compile Include="Lib\Data\Entities\Role.cs" />
-    <Compile Include="Lib\Data\Entities\User.cs" />
-    <Compile Include="Lib\Data\Entities\UserRole.cs" />
-    <Compile Include="Lib\Data\Maps\RoleMap.cs" />
-    <Compile Include="Lib\Data\Maps\UserMap.cs" />
-    <Compile Include="Lib\Data\Maps\UserRoleMap.cs" />
+    <Compile Include="Lib\Data\Entities\StrategicFitIndicator.cs" />
+    <Compile Include="Lib\Data\Entities\StrategicFitIndicatorCategory.cs" />
+    <Compile Include="Lib\Data\Entities\WorkItem.cs" />
+    <Compile Include="Lib\Data\Entities\WorkRequest.cs" />
+    <Compile Include="Lib\Data\Entities\SystemRole.cs" />
+    <Compile Include="Lib\Data\Entities\SystemUser.cs" />
+    <Compile Include="Lib\Data\Entities\SytemUserRole.cs" />
+    <Compile Include="Lib\Data\Maps\StrategicFitIndicatorMap.cs" />
+    <Compile Include="Lib\Data\Maps\StrategicFitIndicatorCategoryMap.cs" />
+    <Compile Include="Lib\Data\Maps\WorkItemMap.cs" />
+    <Compile Include="Lib\Data\Maps\WorkRequestMap.cs" />
+    <Compile Include="Lib\Data\Maps\SystemRoleMap.cs" />
+    <Compile Include="Lib\Data\Maps\SystemUserMap.cs" />
+    <Compile Include="Lib\Data\Maps\SystemUserRoleMap.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="Lib\Data\Services\IUserService.cs" />
-    <Compile Include="Lib\Data\Services\IRoleService.cs" />
-    <Compile Include="Lib\Data\Services\UserService.cs" />
-    <Compile Include="Lib\Data\Services\RoleService.cs" />
+    <Compile Include="Lib\Data\Services\ISystemUserService.cs" />
+    <Compile Include="Lib\Data\Services\ISystemRoleService.cs" />
+    <Compile Include="Lib\Data\Services\SystemUserService.cs" />
+    <Compile Include="Lib\Data\Services\SystemRoleService.cs" />
     <Compile Include="Lib\Managers\ApplicationAuthenticationManager.cs" />
     <Compile Include="Lib\ViewModels\AuthVm.cs" />
     <Compile Include="App_Start\AppConfig.cs" />
@@ -525,9 +533,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Lib\Models\CheckBoxListItem.cs" />
-    <Compile Include="Lib\ViewModels\LayoutVm.cs" />
-    <Compile Include="Lib\ViewModels\RoleVm.cs" />
-    <Compile Include="Lib\ViewModels\UserVm.cs" />
+    <Compile Include="Lib\ViewModels\SystemRoleVm.cs" />
+    <Compile Include="Lib\ViewModels\SystemUserVm.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\SeedData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -571,6 +578,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Detail.cshtml" />
     <Content Include="Views\App\About.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\RadioButtonListItem.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

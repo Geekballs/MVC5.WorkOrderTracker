@@ -6,24 +6,27 @@ using App.Web.Lib.Models;
 
 namespace App.Web.Lib.ViewModels
 {
-    public class UserVm
+    /// <summary>
+    /// 
+    /// </summary>
+    public class SystemUserVm
     {
         public class Index
         {
-            public Guid UserId { get; set; }
+            public Guid SystemUserId { get; set; }
             public string UserName { get; set; }
             public string UserFirstName { get; set; }
             public string UserLastName { get; set; }
             public string UserAlias { get; set; }
-            public string EmailAddress { get; set; }
-            public bool LoginEnabled { get; set; }
+            public string UserEmailAddress { get; set; }
+            public bool UserLoginEnabled { get; set; }
             public int UserRoleCount { get; set; }
         }
 
         public class Detail
         {
             [DisplayName("ID")]
-            public Guid UserId { get; set; }
+            public Guid SystemUserId { get; set; }
 
             [DisplayName("User Name")]
             public string UserName { get; set; }
@@ -49,8 +52,8 @@ namespace App.Web.Lib.ViewModels
 
         public class UserRolesDetail
         {
-            public Guid RoleId { get; set; }
-            public string RoleName { get; set; }
+            public Guid SystemRoleId { get; set; }
+            public string SystemRoleName { get; set; }
         }
 
         public class Create
@@ -93,7 +96,7 @@ namespace App.Web.Lib.ViewModels
 
         public class Edit
         {
-            public Guid UserId { get; set; }
+            public Guid SystemUserId { get; set; }
 
             [DisplayName("User Name")]
             [Required(ErrorMessage = "Required!", AllowEmptyStrings = false)]
@@ -133,12 +136,12 @@ namespace App.Web.Lib.ViewModels
 
         public class Delete
         {
-            public Guid UserId { get; set; }
+            public Guid SystemUserId { get; set; }
             public string UserName { get; set; }
             public string UserFirstName { get; set; }
             public string UserLastName { get; set; }
             public string UserAlias { get; set; }
-            public string EmailAddress { get; set; }
+            public string UserEmailAddress { get; set; }
             public bool UserLoginEnabled { get; set; }
         }
     }
